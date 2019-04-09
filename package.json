@@ -2,12 +2,24 @@
   "name": "fixed-bn.js",
   "version": "0.0.2",
   "description": "bn.js wrapper that constrains numbers to a fixed width",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "coverage": "istanbul cover ./tests/index.js",
-    "coveralls": "npm run coverage && coveralls <coverage/lcov.info",
-    "lint": "standard",
-    "test": "tape ./tests/index.js"
+    "build": "ethereumjs-config-build",
+    "prepublishOnly": "npm run test && npm run build",
+    "coverage": "ethereumjs-config-coverage",
+    "coveralls": "ethereumjs-config-coveralls",
+    "format": "ethereumjs-config-format",
+    "format:fix": "ethereumjs-config-format-fix",
+    "tslint": "ethereumjs-config-tslint",
+    "tslint:fix": "ethereumjs-config-tslint-fix",
+    "tsc": "ethereumjs-config-tsc",
+    "lint": "ethereumjs-config-lint",
+    "lint:fix": "ethereumjs-config-lint-fix",
+    "unitTests": "ts-node ./node_modules/tape/bin/tape ./tests/*.ts",
+    "test": "npm run lint && npm run unitTests",
+    "test:fix": "npm run lint:fix && npm run unitTests",
+    "docs:build": "typedoc --out docs --mode file --readme none --theme markdown --mdEngine github --gitRevision master --excludeNotExported src/*.ts"
   },
   "keywords": [
     "bn.js"
@@ -15,10 +27,23 @@
   "author": "mjbecze <mjbecze@gmail.com>",
   "license": "MPL-2.0",
   "devDependencies": {
+    "@ethereumjs/config-nyc": "^1.1.1",
+    "@ethereumjs/config-prettier": "^1.1.1",
+    "@ethereumjs/config-tsc": "^1.1.1",
+    "@ethereumjs/config-tslint": "^1.1.1",
+    "@types/bn.js": "^4.11.4",
+    "@types/node": "^11.11.3",
+    "@types/tape": "^4.2.33",
     "coveralls": "^3.0.0",
-    "istanbul": "^0.4.5",
-    "standard": "^11.0.0",
-    "tape": "^4.6.3"
+    "nyc": "^13.3.0",
+    "prettier": "^1.16.4",
+    "tape": "^4.6.3",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-markdown": "^1.1.27",
+    "typescript": "^3.3.3333",
+    "typestrict": "^1.0.2"
   },
   "repository": {
     "type": "git",

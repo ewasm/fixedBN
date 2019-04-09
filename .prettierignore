@@ -1,5 +1,6 @@
 node_modules
-package-lock.json
+.vscode
+package.json
 dist
 .nyc_output
-coverage
+docs
